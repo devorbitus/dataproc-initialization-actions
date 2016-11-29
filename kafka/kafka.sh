@@ -22,7 +22,7 @@ fi
 
 # Variables for this script
 SCALA_VERSION="2.11"
-KAFKA_VERSION="0.9.0.0"
+KAFKA_VERSION="0.10.1.0"
 CLUSTER_NAME=$(hostname | sed 's/\(.*\)-[m|w]-[0-9]*.*/\1/g')
 BROKER_ID=$(hostname | sed 's/.*-w-\([0-9]\)*.*/\1/g')
 DNS_NAME=$(dnsdomainname)
@@ -33,7 +33,7 @@ wget http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}
 tar zxvf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
 
 # Configure Kafka
-ZOOKEEPER_INSTANCES=
+ZOOKEEPER_INSTANCES=(zookeeper-instance-group-1-jcgb.c.masterdata-dev19550045.internal zookeeper-instance-group-1-jcuf.c.masterdata-dev19550045.internal zookeeper-instance-group-1-jeiv.c.masterdata-dev19550045.internal)
 for h in "m" "w-0" "w-1"; do
 	ZOOKEEPER_INSTANCES+=${CLUSTER_NAME}-$h.${DNS_NAME}:2181,
 done
